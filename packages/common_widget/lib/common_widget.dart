@@ -27,7 +27,11 @@ export 'package:gap/gap.dart';
 part 'display/widgets/custom_button.dart';
 part 'display/widgets/custom_text_field.dart';
 part 'display/widgets/date_field.dart';
+part 'display/components/loading_container.dart';
 part 'display/widgets/date_picker.dart';
+
+// pages
+part 'display/pages/empty_data_page.dart';
 //datepicker
 part 'display/components/table_calendar/customization/calendar_builders.dart';
 part 'display/components/table_calendar/customization/calendar_style.dart';
@@ -41,7 +45,7 @@ part 'display/components/table_calendar/widgets/calendar_header.dart';
 part 'display/components/table_calendar/widgets/calendar_page.dart';
 part 'display/components/table_calendar/widgets/cell_content.dart';
 part 'display/components/table_calendar/widgets/custom_icon_button.dart';
-part 'display/components/table_calendar/widgets/format_button.dart'; 
+part 'display/components/table_calendar/widgets/format_button.dart';
 //! END OF DISPLAY
 
 //! DOMAIN

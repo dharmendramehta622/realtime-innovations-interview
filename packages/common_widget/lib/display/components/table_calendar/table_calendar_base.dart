@@ -246,8 +246,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
 
                   _previousIndex = index;
                   widget.onPageChanged?.call(focusedMonth);
-                }
-
+                } 
                 _pageCallbackDisabled = false;
               },
               dowBuilder: widget.dowBuilder,
@@ -322,8 +321,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
 
   int _getDaysAfter(DateTime lastDay) {
     final invertedStartingWeekday =
-        8 - getWeekdayNumber(widget.startingDayOfWeek);
-
+        8 - getWeekdayNumber(widget.startingDayOfWeek); 
     final daysAfter = 7 - ((lastDay.weekday + invertedStartingWeekday) % 7);
     if (daysAfter == 7) {
       return 0;

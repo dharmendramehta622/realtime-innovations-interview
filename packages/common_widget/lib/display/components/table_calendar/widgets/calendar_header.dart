@@ -1,5 +1,4 @@
-part of common_widget; 
-
+part of common_widget;
 
 class CalendarHeader extends StatelessWidget {
   final dynamic locale;
@@ -39,28 +38,27 @@ class CalendarHeader extends StatelessWidget {
       margin: headerStyle.headerMargin,
       padding: headerStyle.headerPadding,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 8,
         children: [
           if (headerStyle.leftChevronVisible)
-            CustomIconButton(
-              icon: headerStyle.leftChevronIcon,
+            GestureDetector(
               onTap: onLeftChevronTap,
-              margin: headerStyle.leftChevronMargin,
-              padding: headerStyle.leftChevronPadding,
-            ),
-          Expanded(
-            child: headerTitleBuilder?.call(context, focusedMonth) ??
-                GestureDetector(
-                  onTap: onHeaderTap,
-                  onLongPress: onHeaderLongPress,
-                  child: Text(
-                    text,
-                    style: headerStyle.titleTextStyle,
-                    textAlign: headerStyle.titleCentered
-                        ? TextAlign.center
-                        : TextAlign.start,
-                  ),
+              child: SVG.asset(Assets.icons.calendar_prev),
+            ), 
+          headerTitleBuilder?.call(context, focusedMonth) ??
+              GestureDetector(
+                onTap: onHeaderTap,
+                onLongPress: onHeaderLongPress,
+                child: mediumText(
+                  text,
+                  18,
+                  kTextPrimary,
+                  textAlign: headerStyle.titleCentered
+                      ? TextAlign.center
+                      : TextAlign.start,
                 ),
-          ),
+              ),
           if (headerStyle.formatButtonVisible &&
               availableCalendarFormats.length > 1)
             Padding(
@@ -76,12 +74,10 @@ class CalendarHeader extends StatelessWidget {
               ),
             ),
           if (headerStyle.rightChevronVisible)
-            CustomIconButton(
-              icon: headerStyle.rightChevronIcon,
+            GestureDetector(
               onTap: onRightChevronTap,
-              margin: headerStyle.rightChevronMargin,
-              padding: headerStyle.rightChevronPadding,
-            ),
+              child: SVG.asset(Assets.icons.calendar_next),
+            ), 
         ],
       ),
     );

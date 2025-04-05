@@ -1,22 +1,22 @@
 part of mainapp;
 
-
 @immutable
 sealed class EmployeeEvent {}
 
+class LoadEmployee extends EmployeeEvent {}
 
-class LoadEmployee extends EmployeeEvent{
-  
-}
+class AddEmployee extends EmployeeEvent {}
 
-class AddEmployee extends EmployeeEvent{
+class EditEmployee extends EmployeeEvent {
+  final int index;
 
-}
-
-class EditEmployee extends EmployeeEvent{
+  EditEmployee(this.index);
 
 }
 
-class DeleteEmployee extends EmployeeEvent{
+class DeleteEmployee extends EmployeeEvent {
+  final int index;
+
+  DeleteEmployee(this.index);
 
 }

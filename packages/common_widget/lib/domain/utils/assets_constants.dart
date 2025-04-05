@@ -14,6 +14,8 @@ class AssetIcons {
   String get date => '$location/date.svg'; 
   String get dropdown_arrow => '$location/dropdown_arrow.svg'; 
   String get person => '$location/person.svg'; 
+  String get calendar_prev => '$location/calendar_prev.svg'; 
+  String get calendar_next => '$location/calendar_next.svg'; 
 
 }
 
