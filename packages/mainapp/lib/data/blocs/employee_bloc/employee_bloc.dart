@@ -50,7 +50,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
           endDate: endDate);
       final res = await _services.addUser(model);
       if (res) {
-        emit(state.copyWith(status: ListStatus.success));
+        emit(state.copyWith(status: ListStatus.created));
         clear();
         add(LoadEmployee());
       }
@@ -72,7 +72,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     on<DeleteEmployee>((event, emit) async {
       final res = await _services.deleteUser(event.index);
       if (res != null) {
-        emit(state.copyWith(status: ListStatus.success, deleteIndex: res));
+        emit(state.copyWith(status: ListStatus.deleted, deleteIndex: res));
         add(LoadEmployee());
       }
     });

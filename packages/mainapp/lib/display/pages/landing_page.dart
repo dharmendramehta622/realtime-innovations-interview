@@ -58,7 +58,17 @@ class LandingPage extends StatelessWidget {
         body: BlocConsumer<EmployeeBloc, EmployeeState>(
           listener: (context, state) {
             switch (state.status) {
-              case ListStatus.success:
+              case ListStatus.created:
+                showSnackbar(
+                  context,
+                  widget: DeleteConfirmationDialog(
+                    onTap: () {
+                      bloc.add(UndoDeleteEmployee(state.deleteIndex));
+                    },
+                  ),
+                );
+                break;
+              case ListStatus.deleted:
                 showSnackbar(
                   context,
                   widget: DeleteConfirmationDialog(
