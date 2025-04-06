@@ -58,8 +58,8 @@ class LandingPage extends StatelessWidget {
           listener: (context, state) {
             switch (state.status) {
               case ListStatus.success:
-                showSnackbar(context,widget: DeleteConfirmationDialog());
-                break; 
+                showSnackbar(context, widget: DeleteConfirmationDialog());
+                break;
               default:
                 break;
             }
@@ -71,6 +71,9 @@ class LandingPage extends StatelessWidget {
               case ListStatus.loading:
                 return const LoadingContainer();
               case ListStatus.loaded:
+                if (state.data.isEmpty && state.removedUsers.isEmpty) {
+                  return EmptyDataPage();
+                }
                 return SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   child: Column(
@@ -137,10 +140,9 @@ class LandingPage extends StatelessWidget {
                           },
                         ),
                       ),
-                      const Gap(12), 
+                      const Gap(12),
                       regularText('Swipe left to delete', 15, kTextSecondary),
-                      const Gap(40),  
-                    
+                      const Gap(40),
                     ],
                   ),
                 );
