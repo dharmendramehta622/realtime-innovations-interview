@@ -149,8 +149,8 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
                                     return DatePicker(
                                       initialDate:
                                           bloc.startDate ?? DateTime.now(),
-                                      onSave: () {
-                                        bloc.startDate = DateTime.now();
+                                      onSave: (selectedDate) {
+                                        bloc.startDate = selectedDate;
                                         context.pop();
                                         setState(() {});
                                       },
@@ -190,8 +190,8 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
                                     return DatePicker(
                                       initialDate:
                                           bloc.endDate ?? DateTime.now(),
-                                      onSave: () {
-                                        bloc.endDate = DateTime.now();
+                                      onSave: (selectedDate) {
+                                        bloc.endDate = selectedDate;
                                         setState(() {});
                                         context.pop();
                                       },

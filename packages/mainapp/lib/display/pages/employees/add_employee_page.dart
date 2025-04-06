@@ -144,8 +144,8 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
                                   builder: (context, setState) {
                                     return DatePicker(
                                       initialDate: bloc.startDate ?? DateTime.now(),
-                                      onSave: () {
-                                        bloc.startDate = DateTime.now();
+                                      onSave: (selectedDate) {
+                                        bloc.startDate = selectedDate;
                                         context.pop();
                                         setState(() {});
                                       },
@@ -185,8 +185,8 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
                                     return DatePicker(
                                       initialDate:
                                           bloc.endDate ?? DateTime.now(),
-                                      onSave: () {
-                                        bloc.endDate = DateTime.now();
+                                      onSave: (selectedDate) {
+                                        bloc.endDate = selectedDate;
                                         setState(() {});
                                         context.pop();
                                       },

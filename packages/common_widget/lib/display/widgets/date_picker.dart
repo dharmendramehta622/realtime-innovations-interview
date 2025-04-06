@@ -5,9 +5,10 @@ class DatePicker extends StatefulWidget {
     super.key,
     this.onSave,
     this.onCancel,
-   required this.initialDate ,
+    required this.initialDate,
   });
-  final void Function()? onSave;
+  final void Function(DateTime selectedDate)? onSave;
+
   final void Function()? onCancel;
   final DateTime initialDate;
   @override
@@ -59,7 +60,7 @@ class _DatePickerState extends State<DatePicker> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 32, 16, 32), 
+          padding: const EdgeInsets.fromLTRB(16, 32, 16, 32),
           child: Column(
             children: [
               Column(
@@ -104,7 +105,7 @@ class _DatePickerState extends State<DatePicker> {
               TableCalendar(
                 focusedDay: _focusedDay,
                 firstDay: DateTime(2000),
-                lastDay: DateTime(2100),  
+                lastDay: DateTime(2100),
                 calendarFormat: CalendarFormat.month,
                 selectedDayPredicate: (day) {
                   return isSameDay(_selectedDay, day);
@@ -132,7 +133,8 @@ class _DatePickerState extends State<DatePicker> {
                     children: [
                       SVG.asset(Assets.icons.date),
                       const Gap(12),
-                      regularText(widget.initialDate.formatToReadableDate, 16, kTextPrimary)
+                      regularText(widget.initialDate.formatToReadableDate, 16,
+                          kTextPrimary)
                     ],
                   ),
                   Row(
@@ -147,9 +149,13 @@ class _DatePickerState extends State<DatePicker> {
                         onTap: widget.onCancel,
                       ),
                       CustomButton(
-                        text: "Save", 
+                        text: "Save",
                         width: 73,
-                        onTap: widget.onSave,
+                        onTap: () {
+                          if (widget.onSave != null) {
+                            widget.onSave!(_selectedDay);
+                          }
+                        },
                       ),
                     ],
                   ),

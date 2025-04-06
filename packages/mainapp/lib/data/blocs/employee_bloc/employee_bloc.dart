@@ -11,6 +11,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
   final UserServices _services = UserServices();
 
   //text-controllers
+
   final nameEC = TextEditingController();
   String? role;
   final roleEC = TextEditingController();
@@ -63,7 +64,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
           endDate: endDate);
       final res = await _services.editUser(currentIndex, model);
       if (res) {
-        emit(state.copyWith(status: ListStatus.success));
+        emit(state.copyWith(status: ListStatus.updated));
         add(LoadEmployee());
       }
     });

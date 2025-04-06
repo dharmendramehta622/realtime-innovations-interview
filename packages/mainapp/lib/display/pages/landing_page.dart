@@ -37,6 +37,7 @@ class LandingPage extends StatelessWidget {
 
     return SafeAreaContainer(
       child: Scaffold(
+        backgroundColor: kBackground,
         appBar: CustomAppBar(
           title: 'Employee List',
         ),
@@ -53,7 +54,16 @@ class LandingPage extends StatelessWidget {
             child: SVG.asset(Assets.icons.plus, height: 18, width: 18),
           ),
         ),
-        body: BlocBuilder<EmployeeBloc, EmployeeState>(
+        body: BlocConsumer<EmployeeBloc, EmployeeState>(
+          listener: (context, state) {
+            switch (state.status) {
+              case ListStatus.success:
+                showSnackbar(context,widget: DeleteConfirmationDialog());
+                break; 
+              default:
+                break;
+            }
+          },
           builder: (context, state) {
             switch (state.status) {
               case ListStatus.initial:
@@ -74,11 +84,13 @@ class LandingPage extends StatelessWidget {
                         decoration: BoxDecoration(color: kBackground),
                         child: mediumText('Current employees', 16, kPrimary700),
                       ),
-                      SizedBox(
+                      Container(
                         width: size.width,
                         height: size.height * .5,
+                        color: kWhite,
                         child: ListView.separated(
                           itemCount: state.data.length,
+                          physics: NeverScrollableScrollPhysics(),
                           padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                           separatorBuilder: (BuildContext context, int index) {
                             return const Divider(
@@ -101,11 +113,13 @@ class LandingPage extends StatelessWidget {
                         child:
                             mediumText('Previous employees', 16, kPrimary700),
                       ),
-                      SizedBox(
+                      Container(
                         width: size.width,
                         height: size.height * .5,
+                        color: kWhite,
                         child: ListView.separated(
                           itemCount: state.removedUsers.length,
+                          physics: NeverScrollableScrollPhysics(),
                           padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                           separatorBuilder: (BuildContext context, int index) {
                             return const Divider(
@@ -123,6 +137,10 @@ class LandingPage extends StatelessWidget {
                           },
                         ),
                       ),
+                      const Gap(12), 
+                      regularText('Swipe left to delete', 15, kTextSecondary),
+                      const Gap(40),  
+                    
                     ],
                   ),
                 );

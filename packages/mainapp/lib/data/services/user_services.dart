@@ -55,8 +55,9 @@ class UserServices {
       if (index >= 0 && index < users.length) {
         // Move to removed list
         final removedUser = users.removeAt(index);
-        removedUsers.add(removedUser);
-
+        removedUsers.add(User.fromMap(removedUser)
+            .copyWith(endDate: DateTime.now())
+            .toMap()); 
         // Save both updated lists
         await prefs.setString(_userListKey, jsonEncode(users));
         await prefs.setString(_deletedUserListKey, jsonEncode(removedUsers));

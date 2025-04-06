@@ -28,6 +28,7 @@ part 'display/widgets/custom_text_field.dart';
 part 'display/widgets/date_field.dart';
 part 'display/components/loading_container.dart';
 part 'display/widgets/date_picker.dart';
+part 'display/components/dialogs.dart';
 
 // pages
 part 'display/pages/empty_data_page.dart';
