@@ -71,10 +71,19 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
 
     on<DeleteEmployee>((event, emit) async {
       final res = await _services.deleteUser(event.index);
-      if (res) {
-        emit(state.copyWith(status: ListStatus.success));
+      if (res != null) {
+        emit(state.copyWith(status: ListStatus.success, deleteIndex: res));
         add(LoadEmployee());
       }
     });
+
+    on<UndoDeleteEmployee>((event, emit) async {
+      final res = await _services.undoDeleteUser(state.deleteIndex);
+      if (res ) {
+        emit(state.copyWith(status: ListStatus.success, deleteIndex: null));
+        add(LoadEmployee());
+      }
+    });
+  
   }
 }

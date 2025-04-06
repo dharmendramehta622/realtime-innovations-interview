@@ -17,3 +17,9 @@ class DeleteEmployee extends EmployeeEvent {
   DeleteEmployee(this.index);
 
 }
+
+class UndoDeleteEmployee extends EmployeeEvent {
+  final int index;
+
+  UndoDeleteEmployee(this.index); 
+}

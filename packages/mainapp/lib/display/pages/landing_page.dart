@@ -34,6 +34,7 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final bloc = context.read<EmployeeBloc>();
 
     return SafeAreaContainer(
       child: Scaffold(
@@ -58,7 +59,14 @@ class LandingPage extends StatelessWidget {
           listener: (context, state) {
             switch (state.status) {
               case ListStatus.success:
-                showSnackbar(context, widget: DeleteConfirmationDialog());
+                showSnackbar(
+                  context,
+                  widget: DeleteConfirmationDialog(
+                    onTap: () {
+                      bloc.add(UndoDeleteEmployee(state.deleteIndex));
+                    },
+                  ),
+                );
                 break;
               default:
                 break;
