@@ -1,23 +1,27 @@
 part of mainapp;
 
-class AddEmployeePage extends StatefulWidget {
-  const AddEmployeePage({super.key});
-
+class EditEmployeePage extends StatefulWidget {
+  const EditEmployeePage(this.e, {super.key});
+  final User e;
   @override
-  State<AddEmployeePage> createState() => _AddEmployeePageState();
+  State<EditEmployeePage> createState() => _EditEmployeePageState();
 }
 
-class _AddEmployeePageState extends State<AddEmployeePage> {
+class _EditEmployeePageState extends State<EditEmployeePage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<EmployeeBloc>().setData(widget.e);
+  }
 
   @override
   Widget build(BuildContext context) {
-
     final bloc = context.read<EmployeeBloc>();
     return BlocConsumer<EmployeeBloc, EmployeeState>(
       listener: (context, state) {
         switch (state.status) {
           case ListStatus.success:
-          context.pop();
+            context.pop();
             break;
           case ListStatus.failure:
             break;
@@ -143,7 +147,8 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
                                 child: StatefulBuilder(
                                   builder: (context, setState) {
                                     return DatePicker(
-                                      initialDate: bloc.startDate ?? DateTime.now(),
+                                      initialDate:
+                                          bloc.startDate ?? DateTime.now(),
                                       onSave: () {
                                         bloc.startDate = DateTime.now();
                                         context.pop();
@@ -224,7 +229,7 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
                       CustomButton(
                         text: 'Save',
                         width: 73,
-                        onTap: () => bloc.add(AddEmployee()),
+                        onTap: () => bloc.add(EditEmployee()),
                       ),
                       const Gap(12),
                     ],

@@ -19,6 +19,7 @@ const Color kWhite = Color(0xFFFFFFFF);
 const Color kBlack = Color(0xFF141414);
 
 const Color kBorder = Color(0xFFE5E5E5);
+const Color kBackground = Color(0xFFF2F2F2);
 
 //Text Colors
 const Color kTextPrimary = Color(0xFF141414);

@@ -57,104 +57,106 @@ class _DatePickerState extends State<DatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 12,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomButton(
-                      text: 'Today',
-                      color: kPrimary50,
-                      textColor: kPrimary700,
-                      onTap: () {},
-                    ),
-                    CustomButton(
-                      text: "Next Monday",
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomButton(
-                      text: "Next Tuesday",
-                      color: kPrimary50,
-                      textColor: kPrimary700,
-                      onTap: () {},
-                    ),
-                    CustomButton(
-                      text: "After 1 week",
-                      color: kPrimary50,
-                      textColor: kPrimary700,
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const Gap(10),
-            TableCalendar(
-              focusedDay: _focusedDay,
-              firstDay: DateTime(2000),
-              lastDay: DateTime(2100),  
-              calendarFormat: CalendarFormat.month,
-              selectedDayPredicate: (day) {
-                return isSameDay(_selectedDay, day);
-              },
-              onDaySelected: _onDaySelected,
-              onFormatChanged: (format) {
-                setState(() {
-                  _calendarFormat = format;
-                });
-              },
-              onPageChanged: (focusedDay) {
-                _focusedDay = focusedDay;
-              },
-            ),
-            const Gap(10),
-            Divider(color: kBorder),
-            // current datetime, save,cancel
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // current datetime
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SVG.asset(Assets.icons.date),
-                    const Gap(12),
-                    regularText(widget.initialDate.formatToReadableDate, 16, kTextPrimary)
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  spacing: 12,
-                  children: [
-                    CustomButton(
-                      text: "Cancel",
-                      color: kPrimary50,
-                      textColor: kPrimary700,
-                      width: 78,
-                      onTap: widget.onCancel,
-                    ),
-                    CustomButton(
-                      text: "Save", 
-                      width: 73,
-                      onTap: widget.onSave,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ));
+    return SafeArea(
+      child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 32, 16, 32), 
+          child: Column(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                spacing: 12,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomButton(
+                        text: 'Today',
+                        color: kPrimary50,
+                        textColor: kPrimary700,
+                        onTap: () {},
+                      ),
+                      CustomButton(
+                        text: "Next Monday",
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomButton(
+                        text: "Next Tuesday",
+                        color: kPrimary50,
+                        textColor: kPrimary700,
+                        onTap: () {},
+                      ),
+                      CustomButton(
+                        text: "After 1 week",
+                        color: kPrimary50,
+                        textColor: kPrimary700,
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const Gap(10),
+              TableCalendar(
+                focusedDay: _focusedDay,
+                firstDay: DateTime(2000),
+                lastDay: DateTime(2100),  
+                calendarFormat: CalendarFormat.month,
+                selectedDayPredicate: (day) {
+                  return isSameDay(_selectedDay, day);
+                },
+                onDaySelected: _onDaySelected,
+                onFormatChanged: (format) {
+                  setState(() {
+                    _calendarFormat = format;
+                  });
+                },
+                onPageChanged: (focusedDay) {
+                  _focusedDay = focusedDay;
+                },
+              ),
+              const Gap(10),
+              Divider(color: kBorder),
+              // current datetime, save,cancel
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // current datetime
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SVG.asset(Assets.icons.date),
+                      const Gap(12),
+                      regularText(widget.initialDate.formatToReadableDate, 16, kTextPrimary)
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    spacing: 12,
+                    children: [
+                      CustomButton(
+                        text: "Cancel",
+                        color: kPrimary50,
+                        textColor: kPrimary700,
+                        width: 78,
+                        onTap: widget.onCancel,
+                      ),
+                      CustomButton(
+                        text: "Save", 
+                        width: 73,
+                        onTap: widget.onSave,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          )),
+    );
   }
 }

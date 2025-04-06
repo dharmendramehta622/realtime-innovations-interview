@@ -4,6 +4,7 @@ class Routes {
   //landing
   static const String landing = '/';
   static const String addEmployee = '/add';
+  static const String editEmployee = '/edit';
 }
 
 // Define your routes using GoRouter
@@ -17,5 +18,13 @@ final List<RouteBase> routes = [
   GoRoute(
     path: Routes.addEmployee,
     builder: (context, state) => const AddEmployeePage(),
+  ),
+  //!Edit employee
+  GoRoute(
+    path: Routes.editEmployee,
+    builder: (context, state) {
+      User user = state.extra as User;
+      return EditEmployeePage(user);
+    },
   ),
 ];

@@ -7,6 +7,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 export 'package:bloc_concurrency/bloc_concurrency.dart';
 export 'package:equatable/equatable.dart';
@@ -34,4 +35,5 @@ part 'display/components/user_container.dart';
 //pages
 part 'display/pages/landing_page.dart';
 part 'display/pages/employees/add_employee_page.dart';
+part 'display/pages/employees/edit_employee_page.dart';
 //! END OF DISPLAY

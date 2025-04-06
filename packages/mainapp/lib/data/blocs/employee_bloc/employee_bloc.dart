@@ -16,6 +16,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
   final roleEC = TextEditingController();
   DateTime? startDate;
   DateTime? endDate;
+  int currentIndex = 0;
 
   void clear() {
     nameEC.clear();
@@ -23,6 +24,13 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     role = null;
     startDate = null;
     endDate = null;
+  }
+
+  void setData(User user) {
+    nameEC.text = user.name;
+    role = user.role;
+    startDate = user.startDate;
+    endDate = user.endDate;
   }
 
   EmployeeBloc() : super(EmployeeState()) {
@@ -36,7 +44,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     on<AddEmployee>((event, emit) async {
       User model = User(
           name: nameEC.text,
-          role: roleEC.text,
+          role: role ?? roles.first,
           startDate: startDate ?? DateTime.now(),
           endDate: endDate);
       final res = await _services.addUser(model);
@@ -50,10 +58,10 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     on<EditEmployee>((event, emit) async {
       User model = User(
           name: nameEC.text,
-          role: roleEC.text,
+          role: role ?? roles.first,
           startDate: startDate!,
           endDate: endDate);
-      final res = await _services.editUser(event.index, model);
+      final res = await _services.editUser(currentIndex, model);
       if (res) {
         emit(state.copyWith(status: ListStatus.success));
         add(LoadEmployee());

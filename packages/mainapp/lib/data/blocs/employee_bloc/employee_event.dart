@@ -8,9 +8,6 @@ class LoadEmployee extends EmployeeEvent {}
 class AddEmployee extends EmployeeEvent {}
 
 class EditEmployee extends EmployeeEvent {
-  final int index;
-
-  EditEmployee(this.index);
 
 }
 
